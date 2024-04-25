@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   View,
-  Text,
+  Image,
   TouchableOpacity,
   useWindowDimensions,
   StyleSheet,
@@ -13,6 +13,7 @@ import Home from '../../pages/Home';
 import Search from '../../pages/Search';
 import Upload from '../../pages/Upload';
 import Calendar from '../../pages/Calendar';
+import Message from '../../pages/Message';
 import MyPage from '../../pages/MyPage';
 
 import HomeIcon from '../../assets/icons/home.svg';
@@ -20,6 +21,7 @@ import MyPageIcon from '../../assets/icons/mypage.svg';
 import AddCircle from '../../assets/icons/add_circle.svg';
 import SearchIcon from '../../assets/icons/search.svg';
 import CalendarIcon from '../../assets/icons/calender.svg';
+import MessageIcon from '../../assets/icons/message.png';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,9 +49,10 @@ function Tabs({navigation}) {
         }}>
         <AddCircle width={48} height={48} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Calendar')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Message')}>
         <View style={{padding: 6}}>
-          <CalendarIcon width={28} height={28} />
+          {/* <MessageIcon width={25} height={25} /> */}
+          <Image source={MessageIcon} style={{width: 28, height: 28}} />
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('MyPage')}>
@@ -68,7 +71,7 @@ function BottomTab({route}) {
       <Tab.Screen name="Home" component={Home} initialParams={route} />
       <Tab.Screen name="Search" component={Search} />
       <Stack.Screen name="Upload" component={Upload} />
-      <Tab.Screen name="Calendar" component={Calendar} />
+      <Tab.Screen name="Message" component={Message} />
       <Tab.Screen name="MyPage" component={MyPage} />
     </Tab.Navigator>
   );

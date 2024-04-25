@@ -186,16 +186,48 @@ const Home = ({navigation, route}) => {
               height: 40,
               alignItems: 'center',
               justifyContent: 'center',
-              borderRadius: 40,
-              backgroundColor: '#5755FE',
+              // borderRadius: 40,
+              // backgroundColor: '#5755FE',
             }}>
-            {/* <Image source={dmIcon} style={{width: 26, height: 26}} /> */}
+            <Image source={Send} style={{width: 26, height: 26}} />
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={{flex: 1}}>
-        <ScrollView>
+        <FlatList
+          ListHeaderComponent={
+            <View>
+              <View style={{paddingLeft: 16, paddingVertical: 12}}>
+                <FlatList
+                  data={dummy_story_data}
+                  renderItem={renderStory}
+                  keyExtractor={item => item.id.toString()}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+            </View>
+          }
+          data={[]}
+          renderItem={<></>}
+          ListFooterComponent={
+            <View
+              style={{
+                justifyContent: 'space-between',
+                paddingHorizontal: 16,
+                paddingTop: 30,
+              }}>
+              <FlatList
+                data={dummy_feed_data}
+                renderItem={renderFeed}
+                keyExtractor={item => item.id.toString()}
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+          }
+        />
+        {/* <ScrollView>
           <View>
             <View style={{paddingLeft: 16, paddingVertical: 12}}>
               <FlatList
@@ -220,7 +252,7 @@ const Home = ({navigation, route}) => {
               showsHorizontalScrollIndicator={false}
             />
           </View>
-        </ScrollView>
+        </ScrollView> */}
       </View>
       <FeedSettingModal isVisible={isSetting} setIsVisible={setIsSetting} />
     </SafeAreaView>
